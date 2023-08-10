@@ -33,11 +33,12 @@ const update = catchError(async (req, res) => {
     const { id } = req.params
     const user = req.body
 
-    const userUpdate = await User.update(user, { where: {
-      id }, returning: true })
-    if (userUpdate[0] === 0) returnres.status(404).json({
-        messaje: "User not found" })
-        return res.json(userUpdate[1][0])
+    const userUpdate = await User.update(user, 
+        { where: {id }, returning: true })
+    
+      if (userUpdate[0] === 0) returnres.status(404)
+
+    return res.json(userUpdate[1][0])
 })
 
 
